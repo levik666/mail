@@ -8,7 +8,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Objects;
 import java.util.Properties;
 
-import static com.mail.Configuration.*;
+import static com.mail.config.Configuration.*;
 
 public class MailSender implements Sender {
 
@@ -41,7 +41,6 @@ public class MailSender implements Sender {
                 transport.close();
             }
         }
-
     }
 
     private void validation(final String to, final String subject, final String body) {

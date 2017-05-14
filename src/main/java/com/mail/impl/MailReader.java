@@ -7,7 +7,7 @@ import javax.mail.*;
 import java.io.IOException;
 import java.util.*;
 
-import static com.mail.Configuration.*;
+import static com.mail.config.Configuration.*;
 
 
 public class MailReader implements Reader {

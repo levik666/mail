@@ -1,13 +1,15 @@
 package com.mail.impl;
 
-import com.mail.Configuration;
 import com.mail.Sender;
+import com.mail.config.ConfigurationLoader;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Properties;
 
-import static com.mail.Configuration.*;
+import static com.mail.config.Configuration.*;
 
 public class MailSenderTest {
 
@@ -16,13 +18,17 @@ public class MailSenderTest {
     private static final String SUBJECT_VALUE = "Test Subject";
     private static final String BODY_VALUE = "Simple Message";
 
-    private Properties props;
+    private static Properties props;
 
     private Sender sender;
 
+    @BeforeClass
+    public static void configurationLoad() throws IOException {
+        props = new ConfigurationLoader("emil_send.properties").load();
+    }
+
     @Before
     public void setUp() throws Exception {
-        props = new Configuration().getGmailSendProps();
         sender = new MailSender(props);
     }
 

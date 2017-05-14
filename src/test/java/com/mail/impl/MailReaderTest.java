@@ -1,25 +1,33 @@
 package com.mail.impl;
 
-import com.mail.Configuration;
 import com.mail.Reader;
+import com.mail.config.ConfigurationLoader;
 import com.mail.dto.MessageDTO;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import static org.junit.Assert.*;
 
 public class MailReaderTest {
 
     private Reader mailReader;
+    private static Properties props = new Properties();;
+
+    @BeforeClass
+    public static void configurationLoad() throws IOException {
+        props = new ConfigurationLoader("emil_read.properties").load();
+    }
 
     @Before
     public void setUp() throws Exception {
-        mailReader = new MailReader(new Configuration().getGmailReadProps());
+        mailReader = new MailReader(props);
     }
 
     @Test
