@@ -34,28 +34,27 @@ public class MailSenderTest {
 
     @Test(expected = NullPointerException.class)
     public void validateToValue() throws Exception {
-        sender.send(null, EMPTY, EMPTY);
+        sender.send(null, EMPTY, EMPTY, EMPTY);
     }
 
     @Test(expected = NullPointerException.class)
     public void validateSubjectValue() throws Exception {
-        sender.send(EMPTY, null, EMPTY);
+        sender.send(EMPTY, EMPTY, null, EMPTY);
     }
 
     @Test(expected = NullPointerException.class)
     public void validateBodyValue() throws Exception {
-        sender.send(EMPTY, EMPTY, null);
+        sender.send(EMPTY, EMPTY, EMPTY, null);
     }
 
     @Test(expected = NullPointerException.class)
     public void validateFromValue() throws Exception {
-        sender.send(EMPTY, EMPTY, EMPTY);
+        sender.send(EMPTY,null, EMPTY, EMPTY);
     }
 
     @Test
     public void send() throws Exception {
-        props.put(MAIL_SMTP_FROM_KEY, MAIL_SMTP_USER_NAME_KEY);
-        sender.send(TO_VALUE, SUBJECT_VALUE, BODY_VALUE);
+        sender.send(TO_VALUE, MAIL_SMTP_USER_NAME_KEY, SUBJECT_VALUE, BODY_VALUE);
     }
 
 

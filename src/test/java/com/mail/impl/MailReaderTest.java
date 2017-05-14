@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class MailReaderTest {
 
     private Reader mailReader;
-    private static Properties props = new Properties();;
+    private static Properties props = new Properties();
 
     @BeforeClass
     public static void configurationLoad() throws IOException {

@@ -21,8 +21,8 @@ public class MailSender implements Sender {
     }
 
     @Override
-    public void send(final String to, final String subject, final String body) throws MessagingException {
-        validation(to, subject, body);
+    public void send(final String to, final String from, final String subject, final String body) throws MessagingException {
+        validation(to,from, subject, body);
         Session session = getSession();
         Transport transport = null;
         try {
@@ -34,7 +34,7 @@ public class MailSender implements Sender {
                                         props.getProperty(MAIL_SMTP_USER_NAME_KEY),
                                         props.getProperty(MAIL_SMTP_PASSWORD_KEY));
                 }
-                Transport.send(buildMessage(to, props.getProperty(MAIL_SMTP_FROM_KEY), subject, body, session));
+                Transport.send(buildMessage(to, from, subject, body, session));
             }
         } finally {
             if (transport != null) {
@@ -43,11 +43,11 @@ public class MailSender implements Sender {
         }
     }
 
-    private void validation(final String to, final String subject, final String body) {
+    private void validation(final String to,final String from, final String subject, final String body) {
         Objects.requireNonNull(to, "'to' can't be not null");
         Objects.requireNonNull(subject, "'subject' can't be not null");
         Objects.requireNonNull(body, "'body' can't be not null");
-        Objects.requireNonNull(props.getProperty(MAIL_SMTP_FROM_KEY), "'" + MAIL_SMTP_FROM_KEY +"' can't be not null");
+        Objects.requireNonNull(from, "'from' can't be not null");
         Objects.requireNonNull(props.getProperty(MAIL_SMTP_USER_NAME_KEY), "'" + MAIL_SMTP_USER_NAME_KEY +"' can't be not null");
         Objects.requireNonNull(props.getProperty(MAIL_SMTP_PASSWORD_KEY), "'" + MAIL_SMTP_PASSWORD_KEY +"' can't be not null");
         Objects.requireNonNull(props.getProperty(MAIL_SMTP_HOST_KEY), "'" + MAIL_SMTP_HOST_KEY +"' can't be not null");

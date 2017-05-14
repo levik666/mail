@@ -22,7 +22,7 @@ public class MailReader implements Reader {
     }
 
     @Override
-    public List<MessageDTO> readInbox(final FolderMod mode) throws MessagingException, IOException {
+    public List<MessageDTO> readInbox(final FolderMod mode, boolean isDelete) throws MessagingException, IOException {
         validation(mode);
         Store store = null;
         Folder folder = null;
@@ -37,16 +37,22 @@ public class MailReader implements Reader {
             if(!folder.isOpen()) {
                 folder.open(mode.getMod());
             }
-            return convertMessages(folder.getMessages());
+            return convertMessages(folder.getMessages(), isDelete);
         } finally {
             close(store, folder);
         }
     }
 
-    private List<MessageDTO> convertMessages(Message[] messages) throws MessagingException, IOException {
+    @Override
+    public List<MessageDTO> readInbox(FolderMod folderMod) throws MessagingException, IOException {
+        return readInbox(folderMod, false);
+    }
+
+    private List<MessageDTO> convertMessages(Message[] messages, boolean isDelete) throws MessagingException, IOException {
         if (messages.length > 0) {
             final List<MessageDTO> messageResult = new ArrayList<>(messages.length + 2);
             for(Message message : messages) {
+                message.setFlag(Flags.Flag.DELETED, true);
                 MessageDTO messageDTO = new MessageDTO(message);
                 messageResult.add(messageDTO);
             }

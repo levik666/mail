@@ -4,5 +4,5 @@ import javax.mail.MessagingException;
 
 public interface Sender {
 
-    void send(String to, String subject, String body) throws MessagingException;
+    void send(String to, String from, String subject, String body) throws MessagingException;
 }

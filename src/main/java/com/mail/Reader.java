@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface Reader {
 
+    List<MessageDTO> readInbox(FolderMod folderMod, boolean isDelete) throws MessagingException, IOException;
+
     List<MessageDTO> readInbox(FolderMod folderMod) throws MessagingException, IOException;
 }
