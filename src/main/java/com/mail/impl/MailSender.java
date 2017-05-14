@@ -56,7 +56,7 @@ public class MailSender implements Sender {
     }
 
     private Session getSession() {
-        return Session.getDefaultInstance(props, new SimpleAuthenticator(
+        return Session.getInstance(props, new SimpleAuthenticator(
                     props.getProperty(MAIL_SMTP_USER_NAME_KEY), props.getProperty(MAIL_SMTP_PASSWORD_KEY)
                 )
         );
