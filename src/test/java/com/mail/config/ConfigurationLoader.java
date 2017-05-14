@@ -1,7 +1,5 @@
 package com.mail.config;
 
-import com.mail.impl.MailReaderTest;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
