@@ -5,8 +5,8 @@ import java.util.Properties;
 public class Configuration {
 
     public static final String MAIL_SMTP_HOST_KEY = "mail.smtp.host";
-    public static final String MAIL_SMTP_USER_NAME_KEY = "mail.smtp.username";
-    public static final String MAIL_SMTP_PASSWORD_KEY = "mail.smtp.password";
+    public static final String MAIL_SMTP_USER_NAME_KEY = "username";
+    public static final String MAIL_SMTP_PASSWORD_KEY = "password";
     public static final String MAIL_SMTP_PORT_KEY = "mail.smtp.port";
     public static final String MAIL_SMTP_FROM_KEY = "mail.smtp.from";
 
@@ -24,7 +24,7 @@ public class Configuration {
 
         //Gmail credentials
         props.put(MAIL_SMTP_USER_NAME_KEY, "mtest197@gmail.com");
-        props.put("mail.smtp.password", "Qwertylol");
+        props.put(MAIL_SMTP_PASSWORD_KEY, "Qwertylol");
         return props;
     }
 
@@ -40,7 +40,7 @@ public class Configuration {
 
         //Gmail credentials
         props.put(MAIL_SMTP_USER_NAME_KEY, "mtest197@gmail.com");
-        props.put("mail.smtp.password", "Qwertylol");
+        props.put(MAIL_SMTP_PASSWORD_KEY, "Qwertylol");
         return props;
     }
 }

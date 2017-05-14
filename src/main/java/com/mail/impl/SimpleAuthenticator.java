@@ -5,11 +5,16 @@ import javax.mail.PasswordAuthentication;
 
 public class SimpleAuthenticator extends Authenticator {
 
-    public static final String USER_NAME = "username";
-    public static final String PASSWORD = "password";
+    private String userName;
+    private String password;
+
+    public SimpleAuthenticator(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 
     @Override
     protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(USER_NAME, PASSWORD);
+        return new PasswordAuthentication(userName, password);
     }
 }
